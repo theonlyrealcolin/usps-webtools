@@ -141,6 +141,7 @@ module.exports = class USPS {
       Package: {
         '@ID': '1ST',
         Service: pricingRate.Service || 'PRIORITY',
+        FirstClassMailType: pricingRate.FirstClassMailType,
         ZipOrigination: pricingRate.ZipOrigination || 55401,
         ZipDestination: pricingRate.ZipDestination,
         Pounds: pricingRate.Pounds,
