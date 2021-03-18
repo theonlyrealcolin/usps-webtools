@@ -135,26 +135,42 @@ module.exports = class USPS {
     @param {Object} information about pricing Rate
     @param {Function} callback The callback function
     @returns {Object} instance of module
+    '@ID' Required,
+    Service Required,
+    FirstClassMailType Required,
+    ZipOrigination Required,
+    ZipDestination Required,
+    Pounds Required,
+    Ounces Required,
+    Container Required,
+    Width Optional,
+    Length Optional,
+    Height Optional,
+    Girth Optional,
+    Machinable Optional,
   */
   pricingRateV4(pricingRate, callback) {
+
     const obj = {
-      Package: {
-        '@ID': '1ST',
-        Service: pricingRate.Service || 'PRIORITY',
-        FirstClassMailType: pricingRate.FirstClassMailType,
-        ZipOrigination: pricingRate.ZipOrigination || 55401,
-        ZipDestination: pricingRate.ZipDestination,
-        Pounds: pricingRate.Pounds,
-        Ounces: pricingRate.Ounces,
-        Container: pricingRate.Container,
-        Size: pricingRate.Size,
-        Width: pricingRate.Width,
-        Length: pricingRate.Length,
-        Height: pricingRate.Height,
-        Girth: pricingRate.Girth,
-        Machinable: pricingRate.Machinable
-      }
+      Package: pricingRate
     };
+    // const obj = {
+    //   Package: {
+    //     '@ID': pricingRate.id,
+    //     Service: pricingRate.Service,
+    //     FirstClassMailType: pricingRate.FirstClassMailType,
+    //     ZipOrigination: pricingRate.ZipOrigination,
+    //     ZipDestination: pricingRate.ZipDestination,
+    //     Pounds: pricingRate.Pounds,
+    //     Ounces: pricingRate.Ounces,
+    //     Container: pricingRate.Container,
+    //     Width: pricingRate.Width,
+    //     Length: pricingRate.Length,
+    //     Height: pricingRate.Height,
+    //     Girth: pricingRate.Girth,
+    //     Machinable: pricingRate.Machinable
+    //   }
+    // };
 
     callUSPS('RateV4', 'RateV4', 'Package', this.config, obj, (err, result) => {
       if (err) {
