@@ -131,10 +131,6 @@ module.exports = class USPS {
 
   /**
     Pricing Rate Lookup, based on USPS RateV4
-
-    @param {Object} information about pricing Rate
-    @param {Function} callback The callback function
-    @returns {Object} instance of module
     '@ID' Required,
     Service Required,
     FirstClassMailType Required,
@@ -148,29 +144,16 @@ module.exports = class USPS {
     Height Optional,
     Girth Optional,
     Machinable Optional,
+
+    @param {Object} information about pricing Rate
+    @param {Function} callback The callback function
+    @returns {Object} instance of module
   */
   pricingRateV4(pricingRate, callback) {
 
     const obj = {
       Package: pricingRate
     };
-    // const obj = {
-    //   Package: {
-    //     '@ID': pricingRate.id,
-    //     Service: pricingRate.Service,
-    //     FirstClassMailType: pricingRate.FirstClassMailType,
-    //     ZipOrigination: pricingRate.ZipOrigination,
-    //     ZipDestination: pricingRate.ZipDestination,
-    //     Pounds: pricingRate.Pounds,
-    //     Ounces: pricingRate.Ounces,
-    //     Container: pricingRate.Container,
-    //     Width: pricingRate.Width,
-    //     Length: pricingRate.Length,
-    //     Height: pricingRate.Height,
-    //     Girth: pricingRate.Girth,
-    //     Machinable: pricingRate.Machinable
-    //   }
-    // };
 
     callUSPS('RateV4', 'RateV4', 'Package', this.config, obj, (err, result) => {
       if (err) {
