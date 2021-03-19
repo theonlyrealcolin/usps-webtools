@@ -160,7 +160,7 @@ module.exports = class USPS {
         return callback(err);
       }
 
-      callback(null, result.Postage);
+      callback(null, result);
     });
   }
 
